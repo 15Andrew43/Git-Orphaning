@@ -1,0 +1,26 @@
+Сделав очередно git pull, обнаружили, что все закомичено в main (а хотели pull requests из dev в main).
+
+Возможно в dev уже есть какие-то коммиты, поэтому скопируем их в main c помощью git cherry-pick dev_c1 dev_c2
+
+Переключим dev на последний коммит, когда dev слили в main: git reset --hard merge_c, git push origin +dev:dev
+
+Перенесем dev на последний коммит в main: git rebase main, git push
+
+Main перенесем на merge_c (последний стабильный коммит): git reset --hard merge_c, git push origin +main:main
+
+Ну все, теперь можем делать пулл реквест из dev в main!
+
+
+Весь код целиком (изначально находимся в main):
+git cherry-pick dev_c1 dev_c2
+git checkout dev
+git reset --hard merge_c
+git push origin +dev:dev
+git rebase main
+git push
+git checkout main
+git reset --hard merge_c
+git push origin +main:main
+
+Ну все, теперь можем делать пулл реквест из dev в main!
+
